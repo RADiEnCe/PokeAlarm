@@ -21,14 +21,14 @@ class Telegram_Alarm(Alarm):
 			'title': "A wild <pkmn> has appeared!",
 			'body': "Available until <24h_time> (<time_left>).",
 			'location': "True",
- +			'sticker_id':'none'
+  			'sticker_id':'none'
 		},
 		'pokestop':{
 			#'chat_id': If no default, required
 			'title':"Someone has placed a lure on a Pokestop!",
 			'body': "Lure will expire at <24h_time> (<time_left>).",
 			'location': "True",
- +			'sticker_id':'BQADBAADDQADjGt_DfP0-pH40rzPAg'
+  			'sticker_id':'BQADBAADDQADjGt_DfP0-pH40rzPAg'
 		},
 		'gym':{
 			#'chat_id': If no default, required
