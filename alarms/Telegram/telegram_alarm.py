@@ -7,6 +7,8 @@ log = logging.getLogger(__name__)
 #Local modules
 from ..alarm import Alarm
 from ..utils import *
+#Emote List
+from telegram_stickers import stickerlist
 
 #External modules
 import telepot
@@ -17,12 +19,16 @@ class Telegram_Alarm(Alarm):
 		'pokemon':{
 			#'chat_id': If no default, required
 			'title': "A wild <pkmn> has appeared!",
-			'body': "Available until <24h_time> (<time_left>)."
+			'body': "Available until <24h_time> (<time_left>).",
+			'location': "True",
+  			'sticker_id':'none'
 		},
 		'pokestop':{
 			#'chat_id': If no default, required
 			'title':"Someone has placed a lure on a Pokestop!",
-			'body': "Lure will expire at <24h_time> (<time_left>)."
+			'body': "Lure will expire at <24h_time> (<time_left>).",
+			'location': "True",
+  			'sticker_id':'BQADBAADDQADjGt_DfP0-pH40rzPAg'
 		},
 		'gym':{
 			#'chat_id': If no default, required
