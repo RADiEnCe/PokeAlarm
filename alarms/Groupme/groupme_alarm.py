@@ -75,7 +75,14 @@ class Groupme_Alarm(Alarm):
 		self.send_alert(self.gym, gym_info)
 
 	# send groupme
-	def send_groupme(self, text, location_name='Location', latitude=0, longitude=0):
+	def send_groupme(self, text, location_name=None, latitude=None, longitude=None):
+		'''
+		self -- alarm instance
+		text -- message text to send to groupme
+		location_name -- memo attached to location (if any)
+		latitude -- latitude of location, if any
+		longitude -- longitude of location, if any
+		'''
 		data = {
 			'bot_id':self.bot_id,
 			'group_id':self.group_id,
@@ -89,6 +96,8 @@ class Groupme_Alarm(Alarm):
 				}
 			]
 		}
+		if (latitude is None or longitude is None or location_name is None):
+			data['attachments'] = []
 		log.debug('Groupmebot preporing to send data:', data)
 		r = requests.post('https://api.groupme.com/v3/bots/post', jsondumps(data))
 		r.raise_for_status()
