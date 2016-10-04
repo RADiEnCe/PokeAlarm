@@ -367,5 +367,7 @@ class Alarm_Manager(Thread):
 			info.update(**get_biking_data(info))
 		if config['DM_DRIVE']:
 			info.update(**get_driving_data(info))
+		if config['POI']:
+			info.update({'poi':get_closest_poi(info)})
 		
 		return info

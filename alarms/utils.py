@@ -95,6 +95,9 @@ def set_config(root_path):
 	if args.key:
 		config['API_KEY'] = key=args.key
 		config['GMAPS_CLIENT'] = googlemaps.Client(key=args.key)
+		config['POI'] = True
+	else:
+		config['POI'] = False
 	
 	if args.location:
 		config['LOCATION'] =  get_pos_by_name(args.location)
@@ -425,6 +428,15 @@ def get_driving_data(info):
 	except Exception as e:
 		log.error("Error geting biking data : %s" % e)
 	return data;
+# Returns the closest Google Maps point of interest name using the Google Places API
+def get_closest_poi(info):
+	if 'GMAPS_CLIENT' not in config: #Check if key was provided
+		log.error("No Google Maps API key provided - unable to reverse geocode.")
+		return "N/A"
+	lat, lng = info['lat'], info['lng']
+	result = config['GMAPS_CLIENT'].places_nearby(location = (lat,lng), rank_by = 'distance', type = 'point_of_interest')
+	if results.get('status') == 'OK':
+		return results['results'][0]['name']
 #####################################################################
 
 
